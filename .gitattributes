@@ -1,0 +1,11 @@
+* text=auto
+
+*.gif binary
+*.jpg binary
+*.png binary
+*.pdf binary
+
+*.md text
+*.java text
+*.kt text
+*.pom text
