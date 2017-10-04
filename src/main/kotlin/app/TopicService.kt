@@ -5,15 +5,9 @@ import javax.transaction.Transactional
 
 @Service
 @Transactional
-class TopicService (val topicRepository: TopicRepository) {
+class TopicService(val topicRepository: TopicRepository) {
 
-    fun topics(): List<Topic> =
-            topicRepository.findAll().map {
-                Topic(
-                        name = it.name,
-                        content = it.content
-                )
-            }
+    fun topics() = topicRepository.findAll()
 
     fun add(t: Topic) {
         topicRepository.save(TopicEO(name = t.name, content = t.content))
