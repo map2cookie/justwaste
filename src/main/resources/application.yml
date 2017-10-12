@@ -9,8 +9,9 @@ spring:
             parser:
                 allow_unquoted_field_names: true
         jpa:
-            hibernate:
-                ddl-auto: validate
+# no validate. Hibernate will stop at number(19,0) ids or we need a type annotation :(
+#            hibernate:
+#                ddl-auto: validate
             properties:
                 hibernate:
                     show_sql: true

@@ -9,11 +9,10 @@ import javax.persistence.Table
 @Entity
 @Table(name="topic")
 data class TopicEO(
-        @Id @GeneratedValue val id: Long? = null,
+        @Id @GeneratedValue val id: Long?,
         val name: String,
-        val content: String,
-        val ts: Instant = Instant.now()) {
-
-    @Suppress("unused")
-    private constructor() : this(name = "", content = "")
-}
+        val done: Boolean,
+        val deleted: Boolean,
+        val createTs: Instant,
+        val doneTs: Instant?,
+        val deleteTs: Instant?)
