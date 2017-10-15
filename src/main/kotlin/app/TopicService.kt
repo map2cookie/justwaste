@@ -13,6 +13,6 @@ class TopicService(val topicRepository: TopicRepository) {
     fun add(t: Topic) {
         val doneTs = if (t.done) Instant.now() else null
         topicRepository.save(TopicEO(id = null, name = t.name, done = t.done, doneTs = doneTs,
-                deleted = false, createTs = Instant.now(), deleteTs = null))
+                deleted = false, createTs = Instant.now(), deleteTs = null, workItems = emptyList()))
     }
 }

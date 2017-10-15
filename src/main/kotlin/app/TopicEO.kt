@@ -1,10 +1,7 @@
 package app
 
 import java.time.Instant
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name="topic")
@@ -15,4 +12,7 @@ data class TopicEO(
         val deleted: Boolean,
         val createTs: Instant,
         val doneTs: Instant?,
-        val deleteTs: Instant?)
+        val deleteTs: Instant?,
+        @OneToMany(fetch=FetchType.LAZY)
+        @JoinColumn(name = "topic_id")
+        val workItems: List<WorkEO>)

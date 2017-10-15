@@ -7,9 +7,16 @@ CREATE TABLE TOPIC (
 	done_Ts TIMESTAMP,
 	delete_Ts TIMESTAMP
 );
-ALTER TABLE TOPIC
-ADD CONSTRAINT topicPk PRIMARY KEY (id);
+ALTER TABLE TOPIC ADD CONSTRAINT topicPk PRIMARY KEY (id);
 
+CREATE TABLE WORK (
+	id number(19,0) not null,
+	topic_id number(19,0) not null,
+	start_Ts TIMESTAMP not null,
+	stop_Ts TIMESTAMP not null
+);
+ALTER TABLE WORK ADD CONSTRAINT workPk PRIMARY KEY (id);
+ALTER TABLE WORK ADD CONSTRAINT workTopicFk FOREIGN KEY (topic_id) REFERENCES TOPIC (id);
 
 create sequence hibernate_sequence start with 1 increment by 1;
 
