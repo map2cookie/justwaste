@@ -11,4 +11,4 @@ data class WorkEO(
         @JoinColumn(name = "topic_id")
         val topic: TopicEO,
         val startTs: Instant,
-        val endTs: Instant)
+        val stopTs: Instant)
