@@ -10,7 +10,7 @@ class Controller(val service: TopicService) {
 Use '/send' to post a topic.
 Use '/search' to search for topics"""
 
-    @RequestMapping(value = "/send", method = arrayOf(RequestMethod.POST))
+    @RequestMapping(value = ["/send"], method = arrayOf(RequestMethod.POST))
     fun createComment(@RequestBody t: Topic) {
         service.add(t)
     }
