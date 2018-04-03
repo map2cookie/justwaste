@@ -1,3 +1,8 @@
 curl http://localhost:8080/
-curl http://localhost:8080/search?name=top1
-curl -H "Content-Type: application/json" -X POST -d '{"name":"top3", "done":false}' http://localhost:8080/send
+curl -H "Content-Type: application/json" -X POST -d '{"host":"h1.com", "port":1100, "url":"/"}' http://localhost:8080/service
+curl http://localhost:8080/services
+curl http://localhost:8080/service/1
+curl -H "Content-Type: application/json" -X PUT -d '{"id":3, "host":"h2.com", "port":2200, "url":"/2/"}' http://localhost:8080/service
+curl -X DELETE http://localhost:8080/service/1
+curl http://localhost:8080/configchanges
+curl http://localhost:8080/configchanges?since=2018-04-03T16:56:49.512+0000
