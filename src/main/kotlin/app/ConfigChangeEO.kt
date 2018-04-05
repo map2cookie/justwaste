@@ -12,6 +12,6 @@ data class ConfigChangeEO(
         @Id @GeneratedValue val id: Long?,
         val configaction: String,
         val createTs: Instant,
-        val done_Ts: Instant?,
+        val doneTs: Instant?,
         val failed: Boolean,
         val outcome: String?)

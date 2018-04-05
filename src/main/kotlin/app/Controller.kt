@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*
 import java.time.LocalDateTime
 
 @RestController
-class Controller(val service: ServiceService, val configService: ConfigChangeService) {
+class Controller(val serviceService: ServiceService, val configService: ConfigChangeService) {
 
     @RequestMapping("/")
     fun index() = """The 'config' site.
@@ -20,27 +20,33 @@ Use '/configchanges' with get and parameter 'since' with timestamp to get all co
 
     @RequestMapping("/service", method = arrayOf(RequestMethod.POST))
     fun createService(@RequestBody s: Service): ServiceEO {
-        return service.add(s)
+        return configService.process("createService $s", {
+            serviceService.add(s)
+        })
     }
 
     @RequestMapping("/service/{id}", method = arrayOf(RequestMethod.GET))
     fun getService(@PathVariable("id") id: Long): ServiceEO {
-        return service.get(id)
+        return serviceService.get(id)
     }
 
     @RequestMapping("/service/{id}", method = arrayOf(RequestMethod.DELETE))
     fun delService(@PathVariable("id") id: Long) {
-        service.del(id)
+        configService.process("delService $id", {
+            serviceService.del(id)
+        })
     }
 
     @RequestMapping("/service", method = arrayOf(RequestMethod.PUT))
     fun updateService(@RequestBody s: ServiceEO) {
-        return service.update(s)
+        return configService.process("updateService $s", {
+            serviceService.update(s)
+        })
     }
 
     @RequestMapping("/services", method = arrayOf(RequestMethod.GET))
     fun getServices(): List<ServiceEO> {
-        return service.getAll()
+        return serviceService.getAll()
     }
 
     @RequestMapping("/configchanges", method = arrayOf(RequestMethod.GET))
